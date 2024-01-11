@@ -37,8 +37,27 @@ Feature: Search "Prowly Media Monitoring" on Bing with filtering by content cate
     And the user presses the magnifying glass icon with tooltip "Search the web"
     Then the search results should include only video content related to "Prowly Media Monitoring"
     And the best matching search videos are on the top of the first page
-    And the video results should be ranked by relevance
 
+   Scenario: "Prowly Media Monitoring" with News content category filter
+    Given the user is on the bing.com homepage on Edge
+    Given the user is logged in
+    When the user types "Prowly Media Monitoring" in the search field
+    And the user presses the "Enter" key
+    And the user filters the search results by switching to the "News" category
+    Then the search results should include only news content related to "Prowly Media Monitoring"
+    And the news articles should be sorted by best matching filtering results and selected date range
+    And the user can click on a news result to view the full article
+
+  Scenario: "Prowly Media Monitoring" with News content category filter using tab on the homepage
+    Given the user is on the bing.com homepage on Firefox
+    Given the user is logged in
+    Given the user uses Polish language version
+    When the user clicks on the Wiadomości tab at the top of the page
+    And the user deletes content "Najpopularniejsze wiadomości" from the content input box
+    And the user types "Prowly Media Monitoring" in the search field
+    And the user presses the magnifying glass icon with tooltip "Wyszukaj w sieci Web"
+    Then the search results should include only news content related to "Prowly Media Monitoring"
+    And the search results should be in Polish language version
 
 
 
